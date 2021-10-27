@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box !important;
+}
+  
+body {
+    margin: 0;
+    overflow: hidden !important;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    font-family: Inter,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    -ms-scroll-chaining: none;
+    overscroll-behavior: none;
+    overflow: hidden;
+}
+  
+input:focus-visible,
+button:focus-visible {
+    outline: none;
+}
+
+.btn-round {
+    color: var(--white-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    justify-content: center;
+    background: var(--alpha-bg);
+    padding: 0;
+    overflow: hidden;
+}
+
+.btn-round:hover {
+    -webkit-filter: brightness(.9);
+    filter: brightness(.9);
+}
+  
+.zing-container {
+    position: relative;
+    display: flex;
+    height: 100vh;
+    background-image: var(--zing-background);
+}
+  
+.zing-right-content {
+    overflow: hidden scroll;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: var(--side-nav-bar-width);
+}
+
+/* Zing mainpage css */
+.zing-mainpage {
+    flex: 1;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px 4vw 0;
+}
+  
+#app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* text-align: center; */
+    color: #2c3e50;
+    max-width: 100vw;
+}
+
+#nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    line-height: 0px;
+}
+
+.personal-menu-item-title {
+    color: var(--white-color);
+    font-size: 18px;
+}
+
+.zing-container.has-player {
+    height: calc(100vh - var(--player-height));
+}
+
+
+
+/* Responsive */
+
+@media screen and (max-width: 1024px){
+    .zing-right-content {
+        left: var(--side-nav-bar-low-res-width);
+    }
+    .zing-mainpage {
+        flex: 1;
+        padding: 20px 5.5vw 0;
+    }
+}

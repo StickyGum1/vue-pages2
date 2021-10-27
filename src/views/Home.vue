@@ -1,0 +1,36 @@
+<template>
+  <div class="home">
+    <slidertypeone/>
+    <carouseltypeone/>
+    <collectiontypeone/>
+    <singerlist/>
+    <radioslider/>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+import slidertypeone from '@/components/sections/slider.vue';
+import carouseltypeone from '@/components/sections/carousel.vue';
+import collectiontypeone from '@/components/sections/collection.vue';
+import singerlist from '@/components/sections/singerlist.vue';
+import radioslider from '@/components/sections/radioslider.vue';
+
+
+export default {
+  name: 'Home',
+  components: {
+    slidertypeone,
+    carouseltypeone,
+    collectiontypeone,
+    singerlist,
+    radioslider
+  }
+}
+</script>
+
+<style scoped>
+.home {
+  position: relative;
+}
+</style>

@@ -1,0 +1,255 @@
+/* Navbar css */
+#nav {
+    min-width: var(--side-nav-bar-width);
+    height: 100%;
+    background: var(--primary-bg);
+    padding-top: var(--header-height);
+    padding-bottom: var(--nav-add-new-playlist-height);
+}
+
+#nav a {
+    font-weight: bold;
+    color: var(--navigation-text);
+    text-decoration: none;
+}
+
+#nav a.router-link-exact-active {
+    color: var(--text-item-hover);
+}
+
+.sidebar-wrapper {
+    height:100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.zing-navbar-main {
+    margin-bottom: 15px;
+}
+
+.zing-navbar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.zing-navbar-sub {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+} 
+
+.zing-navbar-sub__scrollable {
+    position: absolute;
+    margin-top: 15px;
+    inset: 0px;
+    overflow: hidden scroll;
+}
+
+.zing-navbar-sub__scrollable.scrolling {
+    -webkit-mask-image: linear-gradient(
+180deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.8) 10%,#fff 25%,#fff);
+}
+
+.vip-banner-sidebar {
+    padding: 15px 8px;
+    border-radius: 8px;
+    margin: 10px 20px;
+    text-align: center;
+    background-image: linear-gradient(117deg,#5a4be7,#c86dd7 102%);
+}
+
+.vip-banner-sidebar .text {
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    border-color: #ffdb00;
+    line-height: 1.67;
+    color: var(--white-color);
+    margin-bottom: 10px;
+}
+
+.vip-banner-sidebar .btn {
+    background-color: var(--btn-nav-background);
+    color: var(--black-color) !important;
+    display: inline-block;
+}
+
+.main-title {
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    margin: 0 28px 8px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 26px;
+    color: var(--white-color);
+}
+
+.zing-navbar-menu.library {
+    padding-top: 15px;
+}
+
+.zing-navbar-add-playlist .btn {
+    color: var(--white-color);
+    position: fixed;
+    bottom: 0;
+    height: var(--nav-add-new-playlist-height);
+    border-top: 1px solid var(--border-primary);
+    border-radius: 0;
+    width: var(--side-nav-bar-width);
+    text-align: left;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    background: var(--primary-bg);
+}
+
+.btn.show-full-navbar {
+    display: none;
+}
+
+.zing-navbar-add-playlist .icon {
+    font-size: 18px;
+    margin-right: 10px;
+    color: var(--white-color);
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Logo css */
+.zmp3-logo {
+    width: 120px;
+    height: 40px;
+    display: inline-block;
+    background: var(--img-logo-mp3) 50%/contain no-repeat;
+}
+
+.zing-logo {
+    padding: 0 25px 0 28px;
+    display: flex;
+    align-items: center;
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+}
+
+
+.zing-nav-item a {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 25px;
+    border-left: 3px solid transparent;
+}
+
+.zing-nav-item .router-link-active {
+    border-left: 3px solid var(--purple-primary);
+    background: var(--alpha-bg);
+}
+
+.zing-navbar-menu .icon {
+    margin-right: 10px;
+}
+
+
+.has-player .zing-navbar-add-playlist .add-playlist {
+    bottom: var(--player-height);
+}
+
+.has-player .zing-navbar-add-playlist .show-full-navbar {
+    bottom: calc(var(--player-height) + 8px);
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+    #nav:not(.active) .zmp3-logo {
+        width: 45px;
+        height: 45px;
+        background: var(--img-logo-mp3-low-res) 50%/contain no-repeat;
+    }
+
+    #nav:not(.active) .zing-logo {
+        width: var(--side-nav-bar-low-res-width);
+        padding: 0;
+        justify-content: center;
+    }
+
+    .route-title,
+    .vip-banner-sidebar,
+    .library .main-title,
+    .zing-navbar-add-playlist .add-playlist {
+        display: none;
+    }
+
+    #nav {
+        background-color: var(--sidebar-popup-bg);
+        min-width: var(--side-nav-bar-low-res-width);
+        transition: min-width .3s ease-out;
+        position: relative;
+        z-index: 1000;
+    }
+
+    #nav.active {
+        min-width: var(--side-nav-bar-width);
+    }
+
+    #nav.active .route-title,
+    #nav.active .library .main-title {
+        display: block;
+    }
+
+    #nav:not(.active) .zing-nav-item a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 0;
+    }
+
+    #nav:not(.active) .library .zing-nav-item a {
+        padding: 10px 0;
+    }
+
+    #nav:not(.active) .zing-nav-item .icon {
+        margin: 0;
+    }
+
+    .btn.show-full-navbar {
+        display: block;
+    }
+
+    .zing-navbar-add-playlist .show-full-navbar {
+        color: var(--white-color);
+        border-top: 1px solid var(--border-primary);
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        justify-content: center;
+        background: var(--alpha-bg);
+        padding: 0;
+        bottom: 8px;
+        left: 15px;
+        transition: left .3s ease-out;
+    }
+
+    #nav.active .show-full-navbar {
+        left: calc(var(--side-nav-bar-width) - 50px);
+    }
+
+
+    .btn.show-full-navbar i {
+        margin: 0;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .zing-header {
+        left: var(--side-nav-bar-low-res-width);
+    }
+}
