@@ -5,6 +5,7 @@
     <collectiontypeone/>
     <singerlist/>
     <radioslider/>
+    <singerprofile/>
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import carouseltypeone from '@/components/sections/carousel.vue';
 import collectiontypeone from '@/components/sections/collection.vue';
 import singerlist from '@/components/sections/singerlist.vue';
 import radioslider from '@/components/sections/radioslider.vue';
+import singerprofile from '@/components/sections/singerprofile.vue';
 
 
 export default {
@@ -24,7 +26,8 @@ export default {
     carouseltypeone,
     collectiontypeone,
     singerlist,
-    radioslider
+    radioslider,
+    singerprofile
   }
 }
 </script>

@@ -48,7 +48,7 @@ export default {
     personalLinks
   },
   created() {
-    fetch("http://localhost:3000/user")
+    fetch("/data/users.json")
       .then(respone => respone.json())
       .then(data => {
         this.user = data[0];

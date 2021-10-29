@@ -132,9 +132,6 @@ export default {
   methods: {
     ...mapMutations(["togglePlayMusic", "onPlayingAudio", "onPauseAudio","onEndAudio" , "toggleLoop"]),
     ...mapActions(["toggleTest"]),
-    consoleTesting() {
-      console.log("Open list!");
-    },
     //handle audio
     afterLoadSong() {
       if(this.hasPlayer) {

@@ -257,7 +257,7 @@ export default createStore({
   actions: {
     getSongApi(context) {
       // fetching data
-      fetch("http://localhost:3000/songs")
+      fetch("/data/songs.json")
       .then(respone => respone.json())
       .then(data => {
           context.commit("fetchingSongs", data);

@@ -7,92 +7,54 @@
         </h1>
       </div>
     </div>
-    <button
-      @click="moveToLeft"
-      ref="leftbtn"
-      disabled
-      class="carousel-btn carousel-button-back">
-      <i class="icon ic-go-left"></i>
-    </button>
-    <button 
-      @click="moveToRight"
-      ref="rightbtn"
-      class="carousel-btn carousel-button-next">
-      <i class="icon ic-go-right"></i>
-    </button>
-    <div 
-      class="wrapper-carousel-content">
-      <div
-        ref="listcarouselElmt" 
-        class="carousel-list row"
-        :style="{ marginLeft: -paddingItem + 'px !important', marginRight: -paddingItem + 'px !important' }">
-        
-          <div 
-            v-for="(item, index) in carousellist"
-            :key=index
-            ref="carouselitem"
-            class="carousel-item l-2 m-2-4 c-3"
-            :style="{ paddingLeft: paddingItem + 'px', paddingRight: paddingItem + 'px' }"
-            :class="{ 'is-singer' : item.isSinger }">
-              <div class="wrapper-item-main-img">
-                <div class="carousel-live-label">
-                  <span class="live-label-text">LIVE</span>
-                </div>
-                <router-link 
-                  :to="{ name: 'Songsanlbum' }"
-                  class="carousel-item-link"
-                  @click="updateCurrentCategory(item)">
-                  <svg class="svg" width="100%" height="100%" viewBox="0 0 100 100">
-                    <circle class="svg-circle-bg" stroke="rgba(255, 255, 255, 0.2)" cx="50" cy="50" r="48.75" stroke-width="2.5"></circle>
-                    <circle class="svg-circle" stroke="#ff4b4a" cx="50" cy="50" r="48.75" stroke-width="2.5" stroke-dasharray="306.3052837250048" 
-                    :stroke-dashoffset="`${getRandomRadioPercent()}.00464994223347`" style="transition: stroke-dashoffset 850ms ease-in-out 0s;">
-                    </circle>
-                  </svg>
-                  <div 
-                    class="carousel-item-thumb-image">
-                    <img 
-                      class="carousel-item-image" 
-                      :src="item.image" alt="">
-                  </div>
-                  <div class="overlay-blur"></div>
-                  <div class="carousel-item-tooltip">
-                    <!-- <button class="btn-round wishlist-btn">
-                      <i class="icon ic-like"></i>
-                    </button> -->
-                    <button class="btn-round open-playlist-btn">
-                      <i class="icon ic-play-circle-outline"></i>
-                    </button>
-                    <!-- <button class="btn-round more-options">
-                      <i class="icon ic-more"></i>
-                    </button> -->
-                  </div>
-                </router-link>
-                <div 
-                  class="wrapper-radio-icon">
-                    <img 
-                      :src="item.subImage" 
-                      alt="">
-                </div>
-              </div>
-              
-              <div class="carousel-item-infor">
-                <h4 class="item-infor-title">
+    <div class="wrapper-carousel-list-content">
+      <button
+        @click="moveToLeft"
+        ref="leftbtn"
+        disabled
+        class="carousel-btn carousel-button-back">
+        <i class="icon ic-go-left"></i>
+      </button>
+      <button 
+        @click="moveToRight"
+        ref="rightbtn"
+        class="carousel-btn carousel-button-next">
+        <i class="icon ic-go-right"></i>
+      </button>
+      <div 
+        class="wrapper-carousel-content">
+        <div
+          ref="listcarouselElmt" 
+          class="carousel-list row">
+          
+            <div 
+              v-for="(item, index) in carousellist"
+              :key=index
+              ref="carouselitem"
+              class="carousel-item l-2 m-3 c-3"
+              :style="{ paddingLeft: paddingItem + 'px', paddingRight: paddingItem + 'px' }"
+              :class="{ 'is-singer' : item.isSinger }">
+                <div class="wrapper-item-main-img">
                   <router-link 
-                  :to="{ name: 'Songsanlbum' }"
-                  class="item-title-link">
-                    {{ item.title }}
+                    :to="{ name: 'Songsanlbum' }"
+                    class="carousel-item-link"
+                    @click="updateCurrentCategory(item)">
+                    <div 
+                      class="carousel-item-thumb-image">
+                      <img 
+                        class="carousel-item-image" 
+                        :src="item.image" alt="">
+                    </div>
+                    <div class="overlay-blur"></div>
+                    <div class="carousel-item-tooltip">
+                      <button class="btn-round open-playlist-btn">
+                        <i class="icon ic-play-circle-outline"></i>
+                      </button>
+                    </div>
                   </router-link>
-                </h4>
-                <span class="item-infor-des">
-                  {{ Math.floor(Math.random()*200) }} đang nghe
-                </span>
-                <!-- <button class="btn-follow-singer">
-                  <i class="icon ic-addfriend"></i>
-                  QUAN TÂM
-                </button> -->
-                
+                </div>
               </div>
-            </div>
+        </div>
       </div>
     </div>
   </div>
@@ -104,7 +66,7 @@ export default {
     name: "radio-section",
     data() {
       return {
-        paddingItem: 12,
+        paddingItem: 12, 
         stackWidth: 0,
       }
     },
@@ -117,20 +79,20 @@ export default {
         this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`);
       },
       moveToRight() {
-        let stack = this.stackWidth - this.$refs.listcarouselElmt.clientWidth;
-        if (stack - this.$refs.listcarouselElmt.clientWidth - 10 > -this.getFullWidthCarousel()){
+        let stack = this.stackWidth - this.$refs.listcarouselElmt.clientWidth - this.padding;
+        if (stack - this.$refs.listcarouselElmt.clientWidth > -this.getFullWidthCarousel()){
           this.$refs.leftbtn.disabled = false;
           this.stackWidth = stack;
           this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`)
         } else {
           this.$refs.rightbtn.disabled = true;
           this.$refs.leftbtn.disabled = false;
-          this.stackWidth = -(this.getFullWidthCarousel() - this.$refs.listcarouselElmt.clientWidth + this.paddingItem);
+          this.stackWidth = -(this.getFullWidthCarousel() - this.$refs.listcarouselElmt.clientWidth);
           this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`)
         }
       },
       moveToLeft() {
-        let stack = this.stackWidth + this.$refs.listcarouselElmt.clientWidth + this.paddingItem;
+        let stack = this.stackWidth + this.$refs.listcarouselElmt.clientWidth;
         if (stack + 10 >= 0) {
           this.$refs.rightbtn.disabled = false;
           this.$refs.leftbtn.disabled = true;
@@ -172,6 +134,10 @@ export default {
 
 .wrapper-carousel-content {
   overflow: hidden;
+}
+
+.wrapper-carousel-list-content {
+  position: relative;
 }
 
 .carousel-title {
@@ -226,8 +192,8 @@ export default {
   z-index: 1000;
   background: var(--white-color);
   border-radius: 50px;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
 }
 
 .carousel-button-back {
@@ -463,12 +429,6 @@ export default {
 
   .carousel-button-next {
     right: -2%;
-  }
-
-  .carousel-button-next,
-  .carousel-button-back {
-    width: 40px;
-    height: 40px;
   }
 }
 
