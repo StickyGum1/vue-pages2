@@ -214,9 +214,9 @@ export default createStore({
     updateCurrentSong(state){
       if (state.currentSong != state.tempSong) {
         state.currentSong = state.tempSong;
-        state.isActivePopup = false;
         state.isPlaying = true;
-      }
+      } 
+      state.isActivePopup = false;
       state.hasPlayer = true;
     },
     updateCurrentCategory(state, category) {
