@@ -37,7 +37,7 @@
               THƯ VIỆN
             </div>
             <li data-id="5" class="zing-nav-item">
-              <a href="/newsongs" class="">
+              <a href="#" class="">
                 <i class="icon">
                   <img src="https://zjs.zadn.vn/zmp3-desktop/releases/v1.0.13/static/media/my-song.cf0cb0b4.svg">
                 </i>
@@ -45,7 +45,7 @@
               </a>
               </li>
               <li data-id="5" class="zing-nav-item">
-              <a href="/newsongs" class="">
+              <a href="#" class="">
                 <i class="icon">
                   <img src="https://zjs.zadn.vn/zmp3-desktop/releases/v1.0.13/static/media/my-playlist.7e92a5f0.svg">
                 </i>
@@ -53,7 +53,7 @@
               </a>
               </li>
               <li data-id="5" class="zing-nav-item">
-              <a href="/newsongs" class="">
+              <a href="#" class="">
                 <i class="icon">
                   <img src="https://zjs.zadn.vn/zmp3-desktop/releases/v1.0.13/static/media/my-history.374cb625.svg">
                 </i>
