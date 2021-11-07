@@ -17,8 +17,8 @@ export default {
 <style scoped>
 
 .wrapper-main-list-song {
-    /* opacity: 0;
-    visibility: hidden; */
+    opacity: 0;
+    visibility: hidden;
     position: fixed;
     inset: 0% 0 0 0;
     z-index: 1000;
