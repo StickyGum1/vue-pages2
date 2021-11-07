@@ -26,13 +26,13 @@
     --popup-bg: #6a39af;
     --dark-alpha-80: rgba(0,0,0,0.8);
     /* logo */
-    --img-logo-mp3: url(../image/logo/logo1.svg);
-    --img-logo-mp3-low-res: url(../image/logo/logo2_lowreso.svg);
+    --img-logo-mp3: url(/image/logo/logo1.svg);
+    --img-logo-mp3-low-res: url(/image/logo/logo2_lowreso.svg);
     /* Background */
-    --zing-background: url(../image/background/zingbg1.svg);
-    --player-background: url(../image/background/playerbg.png);
+    --zing-background: url(/image/background/zingbg1.svg);
+    --player-background: url(/image/background/playerbg.png);
     /* Icon */
-    --avt-image: url(../image/logo/avt2.jpg);
+    --avt-image: url(/image/logo/avt2.jpg);
 }
 
 button {

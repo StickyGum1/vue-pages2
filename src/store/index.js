@@ -4,6 +4,7 @@ export default createStore({
     user: null,
     listUser: null,
     hasPlayer: true,
+    isActiveListSong: false,
     isAvtiveNavBar: false,
     isScrollingMainpage: false,
     isScrollingSubMenu: false,
@@ -176,6 +177,9 @@ export default createStore({
     },
     togglePartnerPopup(state) {
       state.isActivePartner = !state.isActivePartner
+    },
+    toggleListSongPlayer(state) {
+      state.isActiveListSong = !state.isActiveListSong;
     },
     //handle music
     togglePlayMusic(state) {

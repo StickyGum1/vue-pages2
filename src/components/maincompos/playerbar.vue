@@ -2,7 +2,11 @@
 <div 
   class="wrapper-player-containner">
   <div v-if="hasPlayer" class="wrapper-player-bar grid">
-    <div class="player-bar-container row">
+    <div
+      @click="handleActiveListSong"
+      ref="playerbar"
+      class="player-bar-container row"
+      :style= "playerbg">
       <div class="player-bar-left-part col ">
         <div v-if="currentSong" class="player-song-infor">
           <div 
@@ -55,13 +59,14 @@
         </div>
         <div class="player-middle-bottom-progress-bar">
           <span
+            @click="handleStopPropagation"
             ref="currentTime" 
             class="onplay-progress-time">
             00:00
           </span>
           <div class="input-progress-bar">
             <input 
-              @click="consoleLog" 
+              @click="handleStopPropagation"
               @input="manageOnProgress"
               class="progress" 
               type="range" 
@@ -72,6 +77,7 @@
               ref="progressBar">
           </div>
           <span
+            @click="handleStopPropagation"
             ref="fullTime"
             class="total-progress-time">
           </span>
@@ -79,12 +85,16 @@
       </div>
       <div class="player-bar-right-part col">
         <div class="list-level-item">
-          <button class="list-level-mv">
+          <button 
+            @click="handleStopPropagation"
+            class="list-level-mv">
             <i class="icon ic-mv"></i>
           </button>
         </div>
         <div class="list-level-item">
-          <button class="list-level-karaoke">
+          <button 
+              @click="handleStopPropagation"
+            class="list-level-karaoke">
             <i class="icon ic-karaoke"></i>
           </button>
         </div>
@@ -101,6 +111,7 @@
           </div>
           <div class="wrapper-audio-volumn">
             <input 
+              @click="handleStopPropagation"
               @input="onVolumnChange"
               value="100"
               max="100"
@@ -119,9 +130,11 @@
         </div>
       </div>
     </div>
-    <listsongplayer/>
+    <listsongplayer
+      v-on:toggleListSong="handleActiveListSong"/>
   </div>
   <audio
+    @click="handleStopPropagation"
     @timeupdate="syncProgressBar"
     @pause="audioPause"
     @play="audioPlaying"
@@ -143,11 +156,15 @@ export default {
   name: 'AudioPlayer',
   data() {
     return {
-      tempVolumnValue: 100
+      tempVolumnValue: 100,
+      playerbg: {
+        background: "url('/image/background/playerbg.png')",
+        backgroundSize: 'cover'
+      }
     }
   },
   methods: {
-    ...mapMutations(["togglePlayMusic", "onPlayingAudio", "onPauseAudio","onEndAudio" , "toggleLoop", "checkMutedAudio"]),
+    ...mapMutations(["togglePlayMusic", "toggleListSongPlayer", "onPlayingAudio", "onPauseAudio","onEndAudio" , "toggleLoop", "checkMutedAudio"]),
     ...mapActions(["toggleTest"]),
     //handle audio
     afterLoadSong() {
@@ -176,7 +193,8 @@ export default {
       this.updateBackgroundProgress(0);
     },
     //Handle tools player
-    togglePlay() {
+    togglePlay(e) {
+      e.stopPropagation();
       this.togglePlayMusic();
       if(this.isPlaying) {
         this.$refs.buttonPlayer.classList.remove("playing");
@@ -186,7 +204,8 @@ export default {
         this.circleAnimation.play();
       }
     },
-    handleToggleLoop() {
+    handleToggleLoop(e) {
+      e.stopPropagation();
       this.toggleLoop();
       if (this.isLooping) {
         this.$refs.toggleBtn.classList.add("active-loop");
@@ -195,6 +214,7 @@ export default {
       }
     },
     onVolumnChange(e) {
+      e.stopPropagation();
       this.tempVolumnValue = e.target.value;
       this.$refs.volume.style.background = `linear-gradient(90deg, #ffffff ${this.$refs.volume.value}%, hsla(0,0%,100%,0.3) 0%)`;
       this.updateVolumeValue(this.$refs.volume.value/100);
@@ -207,8 +227,8 @@ export default {
     updateVolumeValue(value) {
       this.$refs.audio.volume = value;
     },
-
-    handleAudioVolume() {
+    handleAudioVolume(e) {
+      e.stopPropagation();
       if(this.$refs.checkmuted.classList.contains("muted-audio")) {
         if (this.tempVolumnValue == 0 ){
           this.updateVolumeValue(1);
@@ -226,6 +246,30 @@ export default {
         this.$refs.volume.value = 0;
         this.$refs.volume.style.background = `linear-gradient(90deg, #ffffff 0%, hsla(0,0%,100%,0.3) 0%)`;
       }
+    },
+    handleActiveListSong(element) {
+      if(!this.$refs.playerbar.classList.contains("active-list")) {
+        this.toggleListSongPlayer();
+        if(this.isActiveListSong) {
+          this.$refs.playerbar.classList.add("active-list");
+          this.$refs.playerbar.style.background = `transparent`;
+        } 
+      } 
+      else {
+        try {
+          if(!element.closest(".player-bar-container")) {
+              this.toggleListSongPlayer();
+              this.$refs.playerbar.classList.remove("active-list");
+              this.$refs.playerbar.style.background = this.playerbg.background;
+              this.$refs.playerbar.style.backgroundSize = this.playerbg.backgroundSize;
+          }
+        } catch(e) {
+          
+        }
+      }
+    },
+    handleStopPropagation(e) {
+      e.stopPropagation();
     },
     //Hanndle progress bar 
     syncProgressBar() {
@@ -262,7 +306,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["hasPlayer", "currentSong", "arraySong", "isPlaying", "audio", "isLooping", "tempSong", "isMuted"]),
+    ...mapState(["hasPlayer", "currentSong", "arraySong", "isPlaying", "audio", "isLooping", "tempSong", "isMuted", "isActiveListSong"]),
     circleAnimation() {
       let circleAmt = this.$refs.thumbImage.animate([
         { transform: 'rotate(360deg)'}
@@ -290,12 +334,37 @@ export default {
   justify-content: space-between;
   padding: 0 20px;
   z-index: 1002;
+  cursor: pointer;
 }
 
+.player-bar-container.active-list {
+  cursor: default;
+}
+
+.player-bar-container.active-list .player-bar-left-part,
+.player-bar-container.active-list .player-bar-right-part {
+  opacity: 0;
+  visibility: hidden;
+  width: 20%;
+}
+
+.player-bar-container.active-list .player-bar-middle-part {
+  width: 60%;
+}
+
+.player-bar-container.active-list .progress{
+  height: 2.5px;
+}
+
+.player-bar-container.active-list .player-bar-middle-part {
+  flex-direction: column-reverse;
+}
 /* Left part css */
 
 .player-bar-left-part,
 .player-bar-right-part {
+  opacity: 1;
+  visibility: visible;
   width: 30%;
   height: 100%;
   overflow: hidden;
