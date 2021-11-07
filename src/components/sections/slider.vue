@@ -264,4 +264,24 @@ export default {
     }
 }
 
+@media screen and (max-width: 600px) {
+    .slider-item {
+        width: 100%;
+    }
+    .first-item {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    .next-item {
+        transform: translateX(0%); 
+    }
+
+    .last-item {
+        transform: translateX(100%); 
+        z-index: 0;
+        opacity: 0;
+    }
+}
+
 </style>

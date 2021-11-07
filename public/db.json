@@ -1,0 +1,93 @@
+{
+  "user": [
+    {
+      "profile": {
+        "id": 1,
+        "name": "Duy Nguyễn",
+        "avt": "/image/logo/avt2.jpg"
+      }
+    }
+  ],
+  "songs": [
+    {
+        "name": "Panda",
+        "singer": "Desiigner",
+        "path": "/assets/audios/DesiignerPanda.mp3",
+        "singerimg": "/assets/singerimg/img0.jpg",
+        "thumbimg": "/assets/audiosthumb/image0.jpg",
+        "index": 0
+    },  
+    {
+      "name": "Kream",
+      "singer": "Iggy Azalea",
+      "path": "/assets/audios/KreamIggyAzalea.mp3",
+      "singerimg": "/assets/singerimg/img1.jpg",
+      "thumbimg": "/assets/audiosthumb/image1.jpeg",
+      "index": 1
+    },
+    {
+      "name": "Boss Bitch",
+      "singer": "Doja Cat",
+      "path": "/assets/audios/BossBitchDojaCat.mp3",
+      "singerimg": "/assets/singerimg/img2.jpg",
+      "thumbimg": "/assets/audiosthumb/image2.jpg",
+      "index": 2
+    },
+    {
+      "name": "Industry Baby",
+      "singer": "Lil Nas X",
+      "path": "/assets/audios/IndustryBabyLilNasX.mp3",
+      "singerimg": "/assets/singerimg/img3.jpg",
+      "thumbimg": "/assets/audiosthumb/image3.png",
+      "index": 3
+    },
+    {
+      "name": "Lose Yourself",
+      "singer": "Eminem",
+      "path": "/assets/audios/LoseYourselfEminem.mp3",
+      "singerimg": "/assets/singerimg/img4.jpg",
+      "thumbimg": "/assets/audiosthumb/image4.jpg",
+      "index": 4
+    },
+    {
+      "name": "Godzilla",
+      "singer": "Eminem",
+      "path": "/assets/audios/GodzillaEminem.mp3",
+      "singerimg": "/assets/singerimg/img5.png",
+      "thumbimg": "/assets/audiosthumb/image5.jpg",
+      "index": 5
+    },
+    {
+      "name": "Stay",
+      "singer": "The Kid LAROI",
+      "path": "/assets/audios/StayTheKidLAROI.mp3",
+      "singerimg": "/assets/singerimg/img6.jpg",
+      "thumbimg": "/assets/audiosthumb/image6.jpg",
+      "index": 6
+    },
+    {
+      "name": "WOAH",
+      "singer": "KRYPTO9095",
+      "path": "/assets/audios/WOAHKRYPTO9095.mp3",
+      "singerimg": "/assets/singerimg/img7.jpg",
+      "thumbimg": "/assets/audiosthumb/image7.jpg",
+      "index": 7
+    },
+    {
+      "name": "WTF",
+      "singer": "HUGEL",
+      "path": "/assets/audios/WTFHUGEL.mp3",
+      "singerimg": "/assets/singerimg/img8.jpg",
+      "thumbimg": "/assets/audiosthumb/image8.jpg",
+      "index": 8
+    },
+    {
+      "name": "Act a Fool",
+      "singer": "Lil Jon",
+      "path": "/assets/audios/ActaFoolLilJon.mp3",
+      "singerimg": "/assets/singerimg/img9.jpg",
+      "thumbimg": "/assets/audiosthumb/image9.jpg",
+      "index": 9
+    }
+  ]
+}

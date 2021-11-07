@@ -32,27 +32,23 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import personalLinks from '../components/navlinks/navlinkperson.vue';
 export default {
   name: 'Personal',
   data() {
     return {
-      user: null,
     }
   },
   computed: {
-    ...mapState(["personalLinks"])
+    ...mapState(["personalLinks", "user"]),
+    
   },
   components: {
     personalLinks
   },
   created() {
-    fetch("/data/users.json")
-      .then(respone => respone.json())
-      .then(data => {
-        this.user = data[0];
-      })
+    
   }
 }
 </script>

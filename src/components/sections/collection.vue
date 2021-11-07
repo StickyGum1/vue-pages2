@@ -25,15 +25,18 @@
       </div>
     </div>
     <div 
-      class="wrapper-carousel-content">
+      v-if="arraySong"
+      class="wrapper-carousel-content"
+      :style="{ marginLeft: -paddingItem + 'px', marginRight: -paddingItem + 'px' }">
       <div
         ref="listcarouselElmt" 
-        class="carousel-list row">
+        class="carousel-list">
           <div 
             v-for="(item, index) in getRenderList"
             :key=index
             ref="carouselitem"
-            class="carousel-item col l-2-4 m-3 c-4"
+            :style="{ paddingLeft: paddingItem + 'px', paddingRight: paddingItem + 'px' }"
+            class="carousel-item l-2-4 m-3 c-4"
             :class="{ 'is-singer' : item.isSinger }">
               <div class="wrapper-item-main-img">
                 <router-link 
@@ -44,7 +47,7 @@
                     class="carousel-item-thumb-image">
                     <img 
                       class="carousel-item-image" 
-                      :src="item.image" alt="">
+                      :src="item.imagecal" alt="">
                   </div>
                   <div class="overlay-blur"></div>
                   <div class="carousel-item-tooltip">
@@ -102,20 +105,25 @@ export default {
     name: "collection-section",
     data() {
       return {
-        stackWidth: 0,
+        paddingItem: 12,
+        stackWidth: 0
       }
     },
     methods: {
       ...mapMutations(["updateCurrentCategory"]),
       setOriginPosition() {
-        this.stackWidth = 0;
-        this.$refs.rightbtn.disabled = false;
-        this.$refs.leftbtn.disabled = true;
-        this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`);
+        try {
+          this.stackWidth = 0;
+          this.$refs.rightbtn.disabled = false;
+          this.$refs.leftbtn.disabled = true;
+          this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`);
+        } catch (e) {
+
+        }
       },
       moveToRight() {
         let stack = this.stackWidth - this.$refs.listcarouselElmt.clientWidth;
-        if (stack - this.$refs.listcarouselElmt.clientWidth - 10 > -this.getFullWidthCarousel()){
+        if (stack - this.$refs.listcarouselElmt.clientWidth - this.paddingItem > -this.getFullWidthCarousel()){
           this.$refs.leftbtn.disabled = false;
           this.stackWidth = stack;
           this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`)
@@ -128,7 +136,7 @@ export default {
       },
       moveToLeft() {
         let stack = this.stackWidth + this.$refs.listcarouselElmt.clientWidth;
-        if (stack + 10 >= 0) {
+        if (stack + this.paddingItem >= 0) {
           this.$refs.rightbtn.disabled = false;
           this.$refs.leftbtn.disabled = true;
           this.stackWidth = 0;
@@ -144,10 +152,10 @@ export default {
       }
     },
     computed: {
-      ...mapState(["carousellist"]),
+      ...mapState(["arraySong"]),
       getRenderList() {
         let arraySongs = new Array;
-        this.carousellist.forEach((item)=> {
+        this.arraySong.forEach((item)=> {
             if(arraySongs.length < 5) {
               if(!item.isSinger) {
                 return arraySongs.push(item);
@@ -355,7 +363,8 @@ export default {
 
 @media (min-width: 1113px) {
   .carousel-top-right {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
   }
 }
 

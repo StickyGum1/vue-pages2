@@ -1,11 +1,14 @@
 import { createStore } from 'vuex'
 export default createStore({
   state: {
-    hasPlayer: false,
+    user: null,
+    listUser: null,
+    hasPlayer: true,
     isAvtiveNavBar: false,
     isScrollingMainpage: false,
     isScrollingSubMenu: false,
     isActivePopup: false,
+    isActivePartner: false,
     audio: [null],
     currentSong: null,
     currentCategory: { 
@@ -13,12 +16,17 @@ export default createStore({
       isSinger: false,
       title: "Hip Hop Nổi Bật",
       listsinger: "Kanye West, Lil Nas X, Jack Harlow...",
-      image: "/image/section/carousel1/image0.jpg"
+      imagecal: "/image/section/carousel1/image0.jpg"
     },
     tempSong: null,
     arraySong: null,
+    arrayBanner: null,
+    eventData: null,
+    favoriteData: null,
+    partnerData: null,
     isPlaying: false,
     isLooping: false,
+    isMuted: false,
     navlinks: [
       {
         id: 0,
@@ -103,88 +111,6 @@ export default createStore({
         title: 'TẢI LÊN',
         name: 'Myuploaded'
       }
-    ],
-    carousellist: [
-      { 
-        id: 0,
-        isSinger: false,
-        title: "Hip Hop Nổi Bật",
-        listsinger: "Kanye West, Lil Nas X, Jack Harlow...",
-        image: "/image/section/carousel1/image0.jpg",
-        subImage: "/image/section/singer/image0.jpg"
-      },
-      { 
-        id: 1,
-        isSinger: false,
-        title: "Rap Việt ngày nay",
-        listsinger: "Tuimi, 16 Typh, MCK...",
-        image: "/image/section/carousel1/image1.jpg",
-        subImage: "/image/section/singer/image1.jpg"
-      },
-      { 
-        id: 2,
-        isSinger: true,
-        title: "B Ray",
-        listsinger: "",
-        image: "/image/section/carousel1/image2.jpg",
-        subImage: "/image/section/singer/image2.jpg"
-      },
-      { 
-        id: 3,
-        isSinger: false,
-        title: "Góc nhạc Hoàng Dũng",
-        listsinger: "Hoàng Dũng",
-        image: "/image/section/carousel1/image3.jfif",
-        subImage: "/image/section/singer/image3.jpg"
-      },
-      { 
-        id: 4,
-        isSinger: false,
-        title: "Góc nhạc Justin Bieber",
-        listsinger: "Justin Bieber",
-        image: "/image/section/carousel1/image4.jfif",
-        subImage: "/image/section/singer/image4.jpg"
-      },
-      { 
-        id: 5,
-        isSinger: true,
-        title: "Tuấn Hưng",
-        listsinger: "",
-        image: "/image/section/carousel1/image5.jpg",
-        subImage: "/image/section/singer/image5.jpg"
-      },
-      { 
-        id: 6,
-        isSinger: true,
-        title: "Tlinh",
-        listsinger: "",
-        image: "/image/section/carousel1/image6.jpg",
-        subImage: "/image/section/singer/image6.jpg"
-      },
-      { 
-        id: 7,
-        isSinger: false,
-        title: "Nhạc hàn tháng 9",
-        listsinger: "HYUNA, Mamamoo, LISA...",
-        image: "/image/section/carousel1/image7.jpg",
-        subImage: "/image/section/singer/image7.jpg"
-      },
-      { 
-        id: 8,
-        isSinger: false,
-        title: "Top 100 Nhạc trữ tình",
-        listsinger: "Phi Nhung, Anh Thơ, Trọng Tấn...",
-        image: "/image/section/carousel1/image8.jpg",
-        subImage: "/image/section/singer/image8.jpg"
-      },
-      { 
-        id: 9,
-        isSinger: false,
-        title: "Giọng ca Nổi Bật",
-        listsinger: "An An, Hoàng Tôn, Đức Phúc...",
-        image: "/image/section/carousel1/image9.jpg",
-        subImage: "/image/section/singer/image9.jpg"
-      }
     ]
   },
   mutations: {
@@ -207,10 +133,28 @@ export default createStore({
         state.isScrollingSubMenu = false;
       }
     },
+    //fetching handle
     fetchingSongs(state, data) {
       state.arraySong = data;
       state.currentSong = data[0];
     },
+    fetchingBanner(state, data) {
+      state.arrayBanner = data;
+    },
+    fetchingEvent(state, data) {
+      state.eventData = data;
+    },
+    fetchingUser(state, data) {
+      state.user = data[0];
+      state.listUser = data;
+    },
+    fetchingFavorite(state, data) {
+      state.favoriteData = data
+    },
+    fetchingPartner(state, data) {
+      state.partnerData = data
+    },
+    //End fetching handle
     updateCurrentSong(state){
       if (state.currentSong != state.tempSong) {
         state.currentSong = state.tempSong;
@@ -229,6 +173,9 @@ export default createStore({
     togglePopup(state, index) {
       state.isActivePopup = !state.isActivePopup;
       state.tempSong = state.arraySong[index];
+    },
+    togglePartnerPopup(state) {
+      state.isActivePartner = !state.isActivePartner
     },
     //handle music
     togglePlayMusic(state) {
@@ -252,7 +199,7 @@ export default createStore({
     //handle tools player
     toggleLoop(state) {
       state.isLooping = !state.isLooping;
-    },
+    }
   },
   actions: {
     getSongApi(context) {
@@ -261,6 +208,48 @@ export default createStore({
       .then(respone => respone.json())
       .then(data => {
           context.commit("fetchingSongs", data);
+      })
+    },
+
+    getBannerApi(context) {
+      // fetching data
+      fetch("/data/banner.json")
+      .then(respone => respone.json())
+      .then(data => {
+          context.commit("fetchingBanner", data);
+      })
+    },
+
+    getEventApi(context) {
+      // fetching data
+      fetch("/data/event.json")
+      .then(respone => respone.json())
+      .then(data => {
+          context.commit("fetchingEvent", data);
+      })
+    },
+
+    getUserApi(context) {
+      fetch("/data/users.json")
+      .then(respone => respone.json())
+      .then(data => {
+        context.commit("fetchingUser", data)
+      })
+    },
+
+    getFavoriteApi(context) {
+      fetch("/data/favorite.json")
+      .then(respone => respone.json())
+      .then(data => {
+        context.commit("fetchingFavorite", data)
+      })
+    },
+
+    getPartnerApi(context) {
+      fetch("/data/partner.json")
+      .then(respone => respone.json())
+      .then(data => {
+        context.commit("fetchingPartner", data)
       })
     }
   },

@@ -5,7 +5,7 @@
     left: var(--side-nav-bar-width);
     right: 0;
     z-index: 999;
-    transition: .2s ease;
+    /* transition: .2s ease; */
 }
 
 .zing-header.active-bg {

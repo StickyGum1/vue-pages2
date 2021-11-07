@@ -5,7 +5,13 @@
         "path": "/assets/audios/DesiignerPanda.mp3",
         "singerimg": "/assets/singerimg/img0.jpg",
         "thumbimg": "/assets/audiosthumb/image0.jpg",
-        "index": 0
+        "index": 0,
+        "isSinger": false,
+        "title": "Hip Hop Nổi Bật",
+        "listsinger": "Kanye West, Lil Nas X, Jack Harlow",
+        "imagecal": "/image/section/carousel1/image0.jpg",
+        "subimagecal": "/image/section/singer/image0.jpg",
+        "release": "30.10.2021"
     },  
     {
       "name": "Kream",
@@ -13,7 +19,13 @@
       "path": "/assets/audios/KreamIggyAzalea.mp3",
       "singerimg": "/assets/singerimg/img1.jpg",
       "thumbimg": "/assets/audiosthumb/image1.jpeg",
-      "index": 1
+      "index": 1,
+      "isSinger": false,
+      "title": "Rap Việt ngày nay",
+      "listsinger": "Tuimi, 16 Typh, MCK",
+      "imagecal": "/image/section/carousel1/image1.jpg",
+      "subimagecal": "/image/section/singer/image1.jpg",
+      "release": "24.9.2021"
     },
     {
       "name": "Boss Bitch",
@@ -21,7 +33,13 @@
       "path": "/assets/audios/BossBitchDojaCat.mp3",
       "singerimg": "/assets/singerimg/img2.jpg",
       "thumbimg": "/assets/audiosthumb/image2.jpg",
-      "index": 2
+      "index": 2,
+      "isSinger": true,
+      "title": "B Ray",
+      "listsinger": "B-Ray, Ammee, Long Hoàng",
+      "imagecal": "/image/section/carousel1/image2.jpg",
+      "subimagecal": "/image/section/singer/image2.jpg",
+      "release": "22.6.2021"
     },
     {
       "name": "Industry Baby",
@@ -29,7 +47,13 @@
       "path": "/assets/audios/IndustryBabyLilNasX.mp3",
       "singerimg": "/assets/singerimg/img3.jpg",
       "thumbimg": "/assets/audiosthumb/image3.png",
-      "index": 3
+      "index": 3,
+      "isSinger": false,
+      "title": "Góc nhạc Hoàng Dũng",
+      "listsinger": "Hoàng Dũng",
+      "imagecal": "/image/section/carousel1/image3.jfif",
+      "subimagecal": "/image/section/singer/image3.jpg",
+      "release": "05.10.2021"
     },
     {
       "name": "Lose Yourself",
@@ -37,7 +61,13 @@
       "path": "/assets/audios/LoseYourselfEminem.mp3",
       "singerimg": "/assets/singerimg/img4.jpg",
       "thumbimg": "/assets/audiosthumb/image4.jpg",
-      "index": 4
+      "index": 4,
+      "isSinger": false,
+      "title": "Góc nhạc Justin Bieber",
+      "listsinger": "Justin Bieber",
+      "imagecal": "/image/section/carousel1/image4.jfif",
+      "subimagecal": "/image/section/singer/image4.jpg",
+      "release": "30.8.2021"
     },
     {
       "name": "Godzilla",
@@ -45,7 +75,13 @@
       "path": "/assets/audios/GodzillaEminem.mp3",
       "singerimg": "/assets/singerimg/img5.png",
       "thumbimg": "/assets/audiosthumb/image5.jpg",
-      "index": 5
+      "index": 5,
+      "isSinger": true,
+      "title": "Tuấn Hưng",
+      "listsinger": "Tuấn Hưng, Khá Bảnh, Dũng Trọc",
+      "imagecal": "/image/section/carousel1/image5.jpg",
+      "subimagecal": "/image/section/singer/image5.jpg",
+      "release": "05.10.2021"
     },
     {
       "name": "Stay",
@@ -53,7 +89,13 @@
       "path": "/assets/audios/StayTheKidLAROI.mp3",
       "singerimg": "/assets/singerimg/img6.jpg",
       "thumbimg": "/assets/audiosthumb/image6.jpg",
-      "index": 6
+      "index": 6,
+      "isSinger": true,
+      "title": "Tlinh",
+      "listsinger": "MCK, Hoàng Lou, Liêm Phong",
+      "imagecal": "/image/section/carousel1/image6.jpg",
+      "subimagecal": "/image/section/singer/image6.jpg",
+      "release": "11.12.2021"
     },
     {
       "name": "WOAH",
@@ -61,7 +103,13 @@
       "path": "/assets/audios/WOAHKRYPTO9095.mp3",
       "singerimg": "/assets/singerimg/img7.jpg",
       "thumbimg": "/assets/audiosthumb/image7.jpg",
-      "index": 7
+      "index": 7,
+      "isSinger": false,
+      "title": "Nhạc hàn tháng 9",
+      "listsinger": "HYUNA, Mamamoo, LISA",
+      "imagecal": "/image/section/carousel1/image7.jpg",
+      "subimagecal": "/image/section/singer/image7.jpg",
+      "release": "02.09.2021"
     },
     {
       "name": "WTF",
@@ -69,7 +117,12 @@
       "path": "/assets/audios/WTFHUGEL.mp3",
       "singerimg": "/assets/singerimg/img8.jpg",
       "thumbimg": "/assets/audiosthumb/image8.jpg",
-      "index": 8
+      "index": 8,
+      "title": "Top 100 Nhạc trữ tình",
+      "listsinger": "Phi Nhung, Anh Thơ, Trọng Tấn",
+      "imagecal": "/image/section/carousel1/image8.jpg",
+      "subimagecal": "/image/section/singer/image8.jpg",
+      "release": "19.08.2021"
     },
     {
       "name": "Act a Fool",
@@ -77,6 +130,12 @@
       "path": "/assets/audios/ActaFoolLilJon.mp3",
       "singerimg": "/assets/singerimg/img9.jpg",
       "thumbimg": "/assets/audiosthumb/image9.jpg",
-      "index": 9
+      "index": 9,
+      "isSinger": false,
+      "title": "Giọng ca Nổi Bật",
+      "listsinger": "An An, Hoàng Tôn, Đức Phúc",
+      "imagecal": "/image/section/carousel1/image9.jpg",
+      "subimagecal": "/image/section/singer/image9.jpg",
+      "release": "23.07.2021"
     }
 ]

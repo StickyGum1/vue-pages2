@@ -1,0 +1,49 @@
+[
+    {
+        "id": 0,
+        "singerName": "Trịnh Đình Quang",
+        "image": "/image/section/event/image1.jpg",
+        "time": "00:00 Thứ Tư, 03 tháng 11",
+        "isBirthday": true,
+        "isCongratulation": false,
+        "followersId": [0, 1, 2, 3, 4, 5]
+    },
+    {
+        "id": 1,
+        "songName": "Miền Cát Trắng",
+        "singerName": "Bảo Anh",
+        "image": "/image/section/event/image4.jpg",
+        "time": "18:00 Thứ Tư, 03 tháng 11",
+        "isBirthday": false,
+        "isCongratulation": false,
+        "followersId": [3, 6, 8, 7, 1, 10]
+    },
+    {
+        "id": 2,
+        "singerName": "Hoàng Dũng",
+        "image": "/image/section/event/image2.jpg",
+        "time": "00:00 Thứ Năm, 04 tháng 11",
+        "isBirthday": true,
+        "isCongratulation": false,
+        "followersId": [11, 9, 2, 6, 1, 7]
+    },
+    {
+        "id": 3,
+        "singerName": "Lemese, Graykee",
+        "image": "/image/section/event/image3.jpg",
+        "time": "20:00 Thứ Năm, 04 tháng 11",
+        "isBirthday": true,
+        "isCongratulation": false,
+        "followersId": [10, 6, 4, 2, 8, 9]
+    },
+    {
+        "id": 4,
+        "songName": "Ghét Anh Không",
+        "singerName": "G5R Squad",
+        "image": "/image/section/event/image5.jpg",
+        "time": "19:30 Thứ Năm, 04 tháng 11",
+        "isBirthday": false,
+        "isCongratulation": false,
+        "followersId": [2, 8, 3, 4, 7, 11]
+    }
+]

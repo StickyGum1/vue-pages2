@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper-collection-section">
     <div class="wrapper-carousel-top">
-      <div class="carousel-top-left">
+      <!-- <div class="carousel-top-left">
         <h1 class="carousel-title">
           Radio Nổi Bật
         </h1>
-      </div>
+      </div> -->
     </div>
     <div class="wrapper-carousel-list-content">
       <button
@@ -22,13 +22,13 @@
         <i class="icon ic-go-right"></i>
       </button>
       <div 
+        v-if="singerProfileList"
         class="wrapper-carousel-content">
         <div
           ref="listcarouselElmt" 
-          class="carousel-list row">
-          
+          class="carousel-list">
             <div 
-              v-for="(item, index) in carousellist"
+              v-for="(item, index) in singerProfileList"
               :key=index
               ref="carouselitem"
               class="carousel-item l-2 m-3 c-3"
@@ -45,12 +45,12 @@
                         class="carousel-item-image" 
                         :src="item.image" alt="">
                     </div>
-                    <div class="overlay-blur"></div>
-                    <div class="carousel-item-tooltip">
+                    <!-- <div class="overlay-blur"></div> -->
+                    <!-- <div class="carousel-item-tooltip">
                       <button class="btn-round open-playlist-btn">
                         <i class="icon ic-play-circle-outline"></i>
                       </button>
-                    </div>
+                    </div> -->
                   </router-link>
                 </div>
               </div>
@@ -63,24 +63,29 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 export default {
-    name: "radio-section",
+    name: "singer-profile",
     data() {
       return {
         paddingItem: 12, 
         stackWidth: 0,
+        singerProfileList: null
       }
     },
     methods: {
       ...mapMutations(["updateCurrentCategory"]),
       setOriginPosition() {
-        this.stackWidth = 0;
-        this.$refs.rightbtn.disabled = false;
-        this.$refs.leftbtn.disabled = true;
-        this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`);
+        try {
+          this.stackWidth = 0;
+          this.$refs.rightbtn.disabled = false;
+          this.$refs.leftbtn.disabled = true;
+          this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`);
+        } catch (e) {
+
+        }
       },
       moveToRight() {
-        let stack = this.stackWidth - this.$refs.listcarouselElmt.clientWidth - this.padding;
-        if (stack - this.$refs.listcarouselElmt.clientWidth > -this.getFullWidthCarousel()){
+        let stack = this.stackWidth - this.$refs.listcarouselElmt.clientWidth;
+        if (stack - this.$refs.listcarouselElmt.clientWidth - this.paddingItem > -this.getFullWidthCarousel()){
           this.$refs.leftbtn.disabled = false;
           this.stackWidth = stack;
           this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`)
@@ -93,7 +98,7 @@ export default {
       },
       moveToLeft() {
         let stack = this.stackWidth + this.$refs.listcarouselElmt.clientWidth;
-        if (stack + 10 >= 0) {
+        if (stack + this.paddingItem >= 0) {
           this.$refs.rightbtn.disabled = false;
           this.$refs.leftbtn.disabled = true;
           this.stackWidth = 0;
@@ -105,22 +110,22 @@ export default {
         }
       },
       getFullWidthCarousel() {
-        return this.$refs.carouselitem.offsetWidth * this.carousellist.length;
+        return this.$refs.carouselitem.offsetWidth * this.singerProfileList.length;
       },
       getRandomRadioPercent() {
         return Math.ceil(Math.random() * 300)
       }
     },
     computed: {
-      ...mapState(["carousellist"]),
-      getRenderList() {
-        return this.carousellist.filter((item)=> {
-            return item.id <= 4;
-        });
-      }
+      ...mapState(["carousellist"])
     },
     created() {
       window.addEventListener("resize", this.setOriginPosition);
+      fetch("/data/singerprofile.json")
+        .then(response => response.json())
+        .then(data => {
+          this.singerProfileList = data;
+        })
     }
 }
 </script>
@@ -207,7 +212,7 @@ export default {
 .carousel-item-thumb-image {
   line-height: 0;
   height: 0;
-  padding-bottom: 100%;
+  padding-bottom: 120%;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -259,8 +264,6 @@ export default {
 }
 
 .carousel-item-link {
-  border-radius: 50%;
-  overflow: hidden;
   position: relative;
   display: block;
 }
@@ -360,7 +363,8 @@ export default {
 }
 
 .carousel-item-link:hover .carousel-item-image{
-  transform: scale(1.1) translateZ(0);
+  transform: translateZ(0);
+  opacity: .7;
 }
 
 .carousel-item-link:hover .carousel-item-tooltip,
@@ -374,7 +378,7 @@ export default {
 .carousel-item-image {
   height: auto;
   width: 100%;
-  transition: .3s linear;
+  /* transition: .3s linear; */
   transform: translateZ(0);
   filter: blur(0);
 }
@@ -420,7 +424,8 @@ export default {
 
 @media (min-width: 1113px) {
   .carousel-top-right {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
   }
 
   .carousel-button-back {

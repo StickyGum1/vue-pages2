@@ -25,15 +25,17 @@
       </div>
     </div>
     <div 
-      class="wrapper-carousel-content">
+      class="wrapper-carousel-content"
+      :style="{ marginLeft: -paddingItem + 'px', marginRight: -paddingItem + 'px' }">
       <div
         ref="listcarouselElmt" 
-        class="carousel-list row">
+        class="carousel-list">
           <div 
-            v-for="(item, index) in carousellist"
-            :key=index
+            v-for="item in arraySong"
+            :key=item.index
             ref="carouselitem"
-            class="carousel-item col l-2-4 m-3 c-4"
+            :style="{ paddingLeft: paddingItem + 'px', paddingRight: paddingItem + 'px' }"
+            class="carousel-item l-2-4 m-3 c-4"
             :class="{ 'is-singer' : item.isSinger }">
               <div class="wrapper-item-main-img">
                 <router-link 
@@ -44,7 +46,7 @@
                     class="carousel-item-thumb-image">
                     <img 
                       class="carousel-item-image" 
-                      :src="item.image" alt="">
+                      :src="item.imagecal" alt="">
                   </div>
                   <div class="overlay-blur"></div>
                   <div class="carousel-item-tooltip">
@@ -86,8 +88,10 @@
                     {{ item.title }}
                   </router-link>
                 </h4>
-                <span class="item-infor-des">
-                  {{ item.listsinger }}
+                <span 
+                  v-if="!item.isSinger"
+                  class="item-infor-des">
+                  {{ item.listsinger }}...
                 </span>
               </div>
             </div>
@@ -102,21 +106,26 @@ export default {
     name: "carousel-section",
     data() {
       return {
-        stackWidth: 0,
+        paddingItem: 12, 
+        stackWidth: 0
       }
     },
     methods: {
       ...mapMutations(["updateCurrentCategory"]),
       setOriginPosition() {
-        this.stackWidth = 0;
-        this.$refs.rightbtn.disabled = false;
-        this.$refs.leftbtn.disabled = true;
-        this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`);
+        try {
+          this.stackWidth = 0;
+          this.$refs.rightbtn.disabled = false;
+          this.$refs.leftbtn.disabled = true;
+          this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`);
+        } catch (e) {
+
+        }
       },
       moveToRight() {
         let stack = this.stackWidth - this.$refs.listcarouselElmt.clientWidth;
         // console.log("stack: ", stack);
-        if (stack - this.$refs.listcarouselElmt.clientWidth - 10 > -this.getFullWidthCarousel()){
+        if (stack - this.$refs.listcarouselElmt.clientWidth - this.paddingItem > -this.getFullWidthCarousel()){
           this.$refs.leftbtn.disabled = false;
           this.stackWidth = stack;
           this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`)
@@ -129,7 +138,7 @@ export default {
       },
       moveToLeft() {
         let stack = this.stackWidth + this.$refs.listcarouselElmt.clientWidth;
-        if (stack + 10 >= 0) {
+        if (stack + this.paddingItem >= 0) {
           this.$refs.rightbtn.disabled = false;
           this.$refs.leftbtn.disabled = true;
           this.stackWidth = 0;
@@ -141,11 +150,11 @@ export default {
         }
       },
       getFullWidthCarousel() {
-        return this.$refs.carouselitem.offsetWidth * this.carousellist.length;
+        return this.$refs.carouselitem.offsetWidth * this.arraySong.length;
       }
     },
     computed: {
-      ...mapState(["carousellist"])
+      ...mapState(["arraySong"])
     },
     created() {
       window.addEventListener("resize", this.setOriginPosition);
@@ -156,8 +165,11 @@ export default {
 <style scoped>
 .wrapper-carousel-section {
   width: 100%;
-  overflow: hidden;
   padding-bottom: 20px;
+}
+
+.wrapper-carousel-content {
+  overflow: hidden;
 }
 
 .carousel-title {

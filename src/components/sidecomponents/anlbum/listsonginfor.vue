@@ -16,17 +16,17 @@
         <div 
           v-if="!activeCheckList"
           class="category-des-wrapper row">
-          <div class="category-des-first col l-6 m-6">
+          <div class="category-des-first col l-6 m-6 c-6">
             <span>
               BÀI HÁT
             </span>
           </div>
-          <div class="category-des-second col l-2 m-2">
+          <div class="category-des-second col l-2 m-2 c-2">
             <span>
               THỜI GIAN
             </span>
           </div>
-          <span class="category-des-third col l-4 m-4">
+          <span class="category-des-third col l-4 m-4 c-4">
             <button class="category-des-filter-btn">
               Mặc định
               <i class="icon ic-go-down"></i>
@@ -66,7 +66,7 @@
           :key="item.index"
           @mouseover="handleHover(item.index)"
           @click="handleClickItem(item.index)">
-          <div class="category-item-infor col l-6 m-6">
+          <div class="category-item-infor col l-6 m-6 c-6">
             <button class="song-node-button">
               <i class="icon-song-node icon ic-song"></i>
               <input 
@@ -100,10 +100,10 @@
               </span>
             </div>
           </div>
-          <div class="category-item-duration l-2 m-2">
+          <div class="category-item-duration l-2 m-2 c-2">
             03:26
           </div>
-          <div class="category-item-tooltips l-4 m-4">
+          <div class="category-item-tooltips l-4 m-4 c-4">
             <button class="category-item-btn btn-round">
               <i class="icon ic-karaoke"></i>
             </button>
@@ -168,6 +168,10 @@ export default {
 <style scoped>
 .right-category-content {
   flex: 1;
+}
+
+.category-heading {
+  margin-top: 10px;
 }
 
 .category-des-first,

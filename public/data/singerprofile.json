@@ -1,42 +1,42 @@
 [
     {
         "id": 0,
-        "image": "/image/section/singerprofile/image0"
+        "image": "/image/section/singerprofile/image0.png"
     },
     {
         "id": 1,
-        "image": "/image/section/singerprofile/image1"
+        "image": "/image/section/singerprofile/image1.png"
     },
     {
         "id": 2,
-        "image": "/image/section/singerprofile/image2"
+        "image": "/image/section/singerprofile/image2.png"
     },
     {
         "id": 3,
-        "image": "/image/section/singerprofile/image3"
+        "image": "/image/section/singerprofile/image3.png"
     },
     {
         "id": 4,
-        "image": "/image/section/singerprofile/image4"
+        "image": "/image/section/singerprofile/image4.png"
     },
     {
         "id": 5,
-        "image": "/image/section/singerprofile/image5"
+        "image": "/image/section/singerprofile/image5.png"
     },
     {
         "id": 6,
-        "image": "/image/section/singerprofile/image6"
+        "image": "/image/section/singerprofile/image6.png"
     },
     {
         "id": 7,
-        "image": "/image/section/singerprofile/image7"
+        "image": "/image/section/singerprofile/image7.png"
     },
     {
         "id": 8,
-        "image": "/image/section/singerprofile/image8"
+        "image": "/image/section/singerprofile/image8.png"
     },
     {
         "id": 8,
-        "image": "/image/section/singerprofile/image9"
+        "image": "/image/section/singerprofile/image9.png"
     }
 ]

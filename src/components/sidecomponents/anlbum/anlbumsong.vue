@@ -25,4 +25,5 @@ export default {
 .wrapper-category-content {
   position: relative;
 }
+
 </style>

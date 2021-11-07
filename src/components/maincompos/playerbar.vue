@@ -1,7 +1,6 @@
 <template>
 <div 
-  class="wrapper-player-containner"
-  @click="consoleTesting">
+  class="wrapper-player-containner">
   <div v-if="hasPlayer" class="wrapper-player-bar grid">
     <div class="player-bar-container row">
       <div class="player-bar-left-part col ">
@@ -90,13 +89,28 @@
           </button>
         </div>
         
-        <div class="list-level-item player-volumn">
+        <div class="list-level-item-volume player-volume">
           <div class="list-level-item">
-            <button class="list-level-volumn">
+            <button 
+              ref="checkmuted"
+              @click="handleAudioVolume"
+              class="list-level-volume">
               <i class="icon ic-volume"></i>
+              <i class="icon ic-volume-mute"></i>
             </button>
           </div>
-          <input type="range" class="player-volumn-value">
+          <div class="wrapper-audio-volumn">
+            <input 
+              @input="onVolumnChange"
+              value="100"
+              max="100"
+              min="0"
+              step="0.5"
+              type="range" 
+              ref="volume"
+              style="background: linear-gradient(90deg, rgb(255, 255, 255) 100%, rgba(255, 255, 255, 0.3) 0%);"
+              class="player-volume-value">
+          </div>
         </div>
         <div class="list-level-item">
           <button class="show-list-songs btn-round">
@@ -105,6 +119,7 @@
         </div>
       </div>
     </div>
+    <listsongplayer/>
   </div>
   <audio
     @timeupdate="syncProgressBar"
@@ -123,14 +138,16 @@
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex';
 import popup from '../popup/popupsong.vue'
+import listsongplayer from '../sidecomponents/listsongplayer/listsongplayer.vue'
 export default {
   name: 'AudioPlayer',
   data() {
     return {
+      tempVolumnValue: 100
     }
   },
   methods: {
-    ...mapMutations(["togglePlayMusic", "onPlayingAudio", "onPauseAudio","onEndAudio" , "toggleLoop"]),
+    ...mapMutations(["togglePlayMusic", "onPlayingAudio", "onPauseAudio","onEndAudio" , "toggleLoop", "checkMutedAudio"]),
     ...mapActions(["toggleTest"]),
     //handle audio
     afterLoadSong() {
@@ -176,7 +193,39 @@ export default {
       } else {
         this.$refs.toggleBtn.classList.remove("active-loop");
       }
-      
+    },
+    onVolumnChange(e) {
+      this.tempVolumnValue = e.target.value;
+      this.$refs.volume.style.background = `linear-gradient(90deg, #ffffff ${this.$refs.volume.value}%, hsla(0,0%,100%,0.3) 0%)`;
+      this.updateVolumeValue(this.$refs.volume.value/100);
+      if(e.target.value == 0) {
+        this.$refs.checkmuted.classList.add("muted-audio");
+      } else {
+        this.$refs.checkmuted.classList.remove("muted-audio");
+      }
+    },
+    updateVolumeValue(value) {
+      this.$refs.audio.volume = value;
+    },
+
+    handleAudioVolume() {
+      if(this.$refs.checkmuted.classList.contains("muted-audio")) {
+        if (this.tempVolumnValue == 0 ){
+          this.updateVolumeValue(1);
+          this.$refs.volume.value = 100;
+          this.$refs.volume.style.background = `linear-gradient(90deg, #ffffff 100%, hsla(0,0%,100%,0.3) 0%)`;
+        } else {
+          this.updateVolumeValue(this.tempVolumnValue/100);
+          this.$refs.volume.value = this.tempVolumnValue;
+          this.$refs.volume.style.background = `linear-gradient(90deg, #ffffff ${this.tempVolumnValue}%, hsla(0,0%,100%,0.3) 0%)`;
+        }
+        this.$refs.checkmuted.classList.remove("muted-audio");
+      } else {
+        this.$refs.checkmuted.classList.add("muted-audio");
+        this.updateVolumeValue(0);
+        this.$refs.volume.value = 0;
+        this.$refs.volume.style.background = `linear-gradient(90deg, #ffffff 0%, hsla(0,0%,100%,0.3) 0%)`;
+      }
     },
     //Hanndle progress bar 
     syncProgressBar() {
@@ -213,7 +262,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["hasPlayer", "currentSong", "arraySong", "isPlaying", "audio", "isLooping", "tempSong"]),
+    ...mapState(["hasPlayer", "currentSong", "arraySong", "isPlaying", "audio", "isLooping", "tempSong", "isMuted"]),
     circleAnimation() {
       let circleAmt = this.$refs.thumbImage.animate([
         { transform: 'rotate(360deg)'}
@@ -226,7 +275,8 @@ export default {
     
   },
   components: {
-    popup
+    popup,
+    listsongplayer
   },
   mounted() {
     this.audio[0] = this.$refs.audio;
@@ -239,6 +289,7 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  z-index: 1002;
 }
 
 /* Left part css */
@@ -388,7 +439,7 @@ export default {
 }
 
 .progress,
-.player-volumn-value {
+.player-volume-value {
   position: relative;
   width: 100%;
   -webkit-appearance: none;
@@ -402,7 +453,7 @@ export default {
 }
 
 .progress::-webkit-slider-thumb,
-.player-volumn-value::-webkit-slider-thumb {
+.player-volume-value::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   background: var(--white-color);
@@ -414,14 +465,14 @@ export default {
 }
 
 .input-progress-bar:hover .progress,
-.player-volumn:hover .player-volumn-value{
+.player-volume:hover .player-volume-value{
   height: 6px;
   border-radius: 50px;
   cursor: pointer;
 }
 
 .input-progress-bar:hover .progress::-webkit-slider-thumb,
-.player-volumn:hover .player-volumn-value::-webkit-slider-thumb {
+.player-volume:hover .player-volume-value::-webkit-slider-thumb {
   -webkit-appearance: none;
   visibility: visible;
   appearance: none;
@@ -454,14 +505,32 @@ export default {
   align-items: center;
 }
 
+.list-level-item {
+  margin: 0 2.5px;
+}
+
 .list-level-item button {
   padding: 5px;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-level-item:hover button {
+  background: var(--alpha-bg);
 }
 
 .list-level-item .icon {
   font-size: 16px;
   color: var(--white-color);
-  padding: 5px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .list-level-mv .icon {
@@ -477,20 +546,78 @@ export default {
   align-items: center;
 }
 
-.list-level-item.player-volumn {
+.wrapper-audio-volumn {
+  display: flex;
+  align-items: center;
+}
+
+.list-level-item-volume.player-volume {
     display: flex;
     align-items: center;
     padding-right: 20px;
 }
 
-.player-volumn-value {
+.player-volume-value {
   width: 75px;
 }
 
+.list-level-volume .icon:nth-child(1) {
+  display: flex;
+} 
+
+.list-level-volume .icon:nth-child(2) {
+  display: none;
+} 
+
+.list-level-volume.muted-audio .icon:nth-child(1) {
+  display: none;
+} 
+
+.list-level-volume.muted-audio .icon:nth-child(2) {
+  display: flex;
+} 
+
 @media screen and (max-width:1024px) {
-  .player-song-settings,
-  .player-volumn-value {
+  .player-song-settings {
     display: none;
+  }
+
+  .list-level-item-volume.player-volume {
+    position: relative;
+  }
+
+  .player-bar-right-part {
+    overflow: visible;
+  }
+
+  .wrapper-audio-volumn {
+    position: absolute;
+    bottom: 155%;
+    right: 0;
+    width: 140px;
+    height: 25px;
+    border-radius: 5px;
+    padding: 0 13px;
+    z-index: 100;
+    background-color: #353535;
+    display: none;
+  }
+
+  .wrapper-audio-volumn:after {
+    content: "";
+    position: absolute;
+    top: 86%;
+    right: 0;
+    height: 25px;
+    width: 65px;
+  }
+
+  .player-volume-value {
+    width: 100%;
+  }
+
+  .player-volume:hover .wrapper-audio-volumn {
+    display: block;
   }
 }
 </style>

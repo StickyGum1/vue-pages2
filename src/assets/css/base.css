@@ -36,7 +36,18 @@ button:focus-visible {
     -webkit-filter: brightness(.9);
     filter: brightness(.9);
 }
-  
+
+.purple-btn {
+    width: 100%;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background: var(--purple-primary);
+    color: var(--white-color);
+}
+
 .zing-container {
     position: relative;
     display: flex;

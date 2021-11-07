@@ -19,7 +19,9 @@
                   </div>
               </div>
           </div>
-          <div class="zing-header-right">
+          <div 
+            v-if="user"
+            class="zing-header-right">
               <div class="wrapper-btn-group header-tools">
                   <button class="btn-round theme-button">
                       <i class="icon">
@@ -33,7 +35,9 @@
                       <i class="icon ic-settings"></i>
                   </button>
                   <button class="btn-round login-button">
-                      <image class="avatar-image"/>
+                      <image 
+                        :src="user.profile.avt"
+                        class="avatar-image"/>
                   </button>
               </div>
           </div>
@@ -58,7 +62,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(["isScrollingMainpage"])
+        ...mapState(["isScrollingMainpage", "user"])
     },
     beforeMount() {
 

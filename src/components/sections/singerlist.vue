@@ -25,15 +25,17 @@
       </div>
     </div>
     <div 
-      class="wrapper-carousel-content">
+      class="wrapper-carousel-content"
+      :style="{ marginLeft: -paddingItem + 'px', marginRight: -paddingItem + 'px' }">
       <div
         ref="listcarouselElmt" 
-        class="carousel-list row">
+        class="carousel-list">
           <div 
-            v-for="(item, index) in carousellist"
+            v-for="(item, index) in arraySong"
             :key=index
             ref="carouselitem"
-            class="carousel-item col l-2-4 m-3 c-4"
+            :style="{ paddingLeft: paddingItem + 'px', paddingRight: paddingItem + 'px' }"
+            class="carousel-item l-2-4 m-3 c-4"
             :class="{ 'is-singer' : item.isSinger }">
               <div class="wrapper-item-main-img">
                 <router-link 
@@ -44,7 +46,7 @@
                     class="carousel-item-thumb-image">
                     <img 
                       class="carousel-item-image" 
-                      :src="item.image" alt="">
+                      :src="item.imagecal" alt="">
                   </div>
                   <div class="overlay-blur"></div>
                   <div class="carousel-item-tooltip">
@@ -107,15 +109,20 @@ export default {
     data() {
       return {
         stackWidth: 0,
+        paddingItem: 12
       }
     },
     methods: {
       ...mapMutations(["updateCurrentCategory"]),
       setOriginPosition() {
-        this.stackWidth = 0;
-        this.$refs.rightbtn.disabled = false;
-        this.$refs.leftbtn.disabled = true;
-        this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`);
+        try {
+          this.stackWidth = 0;
+          this.$refs.rightbtn.disabled = false;
+          this.$refs.leftbtn.disabled = true;
+          this.$refs.listcarouselElmt.setAttribute("style", `transform: translate3d(${this.stackWidth}px, 0, 0);`);
+        } catch (e) {
+
+        }
       },
       moveToRight() {
         let stack = this.stackWidth - this.$refs.listcarouselElmt.clientWidth;
@@ -144,11 +151,11 @@ export default {
         }
       },
       getFullWidthCarousel() {
-        return this.$refs.carouselitem.offsetWidth * this.carousellist.length;
+        return this.$refs.carouselitem.offsetWidth * this.arraySong.length;
       }
     },
     computed: {
-      ...mapState(["carousellist"]),
+      ...mapState(["arraySong"]),
     },
     created() {
       window.addEventListener("resize", this.setOriginPosition);
@@ -159,8 +166,11 @@ export default {
 <style scoped>
 .wrapper-collection-section {
   width: 100%;
-  overflow: hidden;
   padding-bottom: 0px;
+}
+
+.wrapper-carousel-content {
+  overflow: hidden;
 }
 
 .carousel-title {
@@ -373,7 +383,8 @@ export default {
 
 @media (min-width: 1113px) {
   .carousel-top-right {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
   }
 }
 

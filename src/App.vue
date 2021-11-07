@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     ...mapState(["hasPlayer"]),
-    ...mapActions(["getSongApi"]),
+    ...mapActions(["getSongApi", "getUserApi"]),
   },
   components: {
     navigation,
@@ -36,6 +36,7 @@ export default {
   created() {
     // fetching data
     this.getSongApi;
+    this.getUserApi;
   }
 }
 </script>

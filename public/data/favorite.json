@@ -1,0 +1,35 @@
+[
+    {
+        "des": "VÌ BẠN YÊU THÍCH",
+        "band": "BLACKPINK",
+        "mainimg": "/image/section/favorite/main1.jpg",
+        "subimg": [
+            "/image/section/favorite/sub11.jpg",
+            "/image/section/favorite/sub12.jpg",
+            "/image/section/favorite/sub13.jpg",
+            "/image/section/favorite/sub14.jpg"
+        ]
+    },
+    {
+        "des": "VÌ BẠN QUAN TÂM",
+        "band": "IU",
+        "mainimg": "/image/section/favorite/main2.jpg",
+        "subimg": [
+            "/image/section/favorite/sub21.jpg",
+            "/image/section/favorite/sub22.jpg",
+            "/image/section/favorite/sub23.jpg",
+            "/image/section/favorite/sub24.jpg"
+        ]
+    },
+    {
+        "des": "CÓ THỂ BẠN THÍCH",
+        "band": "BTS",
+        "mainimg": "/image/section/favorite/main3.jpg",
+        "subimg": [
+            "/image/section/favorite/sub31.jpg",
+            "/image/section/favorite/sub32.jpg",
+            "/image/section/favorite/sub33.jpg",
+            "/image/section/favorite/sub34.jpg"
+        ]
+    }
+]
