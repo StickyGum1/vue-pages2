@@ -1,8 +1,8 @@
 [
     {
-        "name": "Panda",
-        "singer": "Desiigner",
-        "path": "/assets/audios/DesiignerPanda.mp3",
+        "name": "WOAH",
+        "singer": "KRYPTO9095",
+        "path": "/assets/audios/WOAHKRYPTO9095.mp3",
         "singerimg": "/assets/singerimg/img0.jpg",
         "thumbimg": "/assets/audiosthumb/image0.jpg",
         "index": 0,
@@ -11,6 +11,7 @@
         "listsinger": "Kanye West, Lil Nas X, Jack Harlow",
         "imagecal": "/image/section/carousel1/image0.jpg",
         "subimagecal": "/image/section/singer/image0.jpg",
+        "thumbforlist": "assets/thumbforlist/img0.jpg",
         "release": "30.10.2021"
     },  
     {
@@ -25,12 +26,13 @@
       "listsinger": "Tuimi, 16 Typh, MCK",
       "imagecal": "/image/section/carousel1/image1.jpg",
       "subimagecal": "/image/section/singer/image1.jpg",
+      "thumbforlist": "assets/thumbforlist/img1.jpg",
       "release": "24.9.2021"
     },
     {
-      "name": "Boss Bitch",
-      "singer": "Doja Cat",
-      "path": "/assets/audios/BossBitchDojaCat.mp3",
+      "name": "Roses",
+      "singer": "Finn Askew",
+      "path": "/assets/audios/Roses.mp3",
       "singerimg": "/assets/singerimg/img2.jpg",
       "thumbimg": "/assets/audiosthumb/image2.jpg",
       "index": 2,
@@ -39,6 +41,7 @@
       "listsinger": "B-Ray, Ammee, Long Hoàng",
       "imagecal": "/image/section/carousel1/image2.jpg",
       "subimagecal": "/image/section/singer/image2.jpg",
+      "thumbforlist": "assets/thumbforlist/img2.jpg",
       "release": "22.6.2021"
     },
     {
@@ -53,12 +56,13 @@
       "listsinger": "Hoàng Dũng",
       "imagecal": "/image/section/carousel1/image3.jfif",
       "subimagecal": "/image/section/singer/image3.jpg",
+      "thumbforlist": "assets/thumbforlist/img3.jpg",
       "release": "05.10.2021"
     },
     {
-      "name": "Lose Yourself",
-      "singer": "Eminem",
-      "path": "/assets/audios/LoseYourselfEminem.mp3",
+      "name": "Tie a Cherry",
+      "singer": "CL",
+      "path": "/assets/audios/TieaCherry.mp3",
       "singerimg": "/assets/singerimg/img4.jpg",
       "thumbimg": "/assets/audiosthumb/image4.jpg",
       "index": 4,
@@ -67,6 +71,7 @@
       "listsinger": "Justin Bieber",
       "imagecal": "/image/section/carousel1/image4.jfif",
       "subimagecal": "/image/section/singer/image4.jpg",
+      "thumbforlist": "assets/thumbforlist/img4.jpg",
       "release": "30.8.2021"
     },
     {
@@ -81,6 +86,7 @@
       "listsinger": "Tuấn Hưng, Khá Bảnh, Dũng Trọc",
       "imagecal": "/image/section/carousel1/image5.jpg",
       "subimagecal": "/image/section/singer/image5.jpg",
+      "thumbforlist": "assets/thumbforlist/img5.jpg",
       "release": "05.10.2021"
     },
     {
@@ -95,12 +101,13 @@
       "listsinger": "MCK, Hoàng Lou, Liêm Phong",
       "imagecal": "/image/section/carousel1/image6.jpg",
       "subimagecal": "/image/section/singer/image6.jpg",
+      "thumbforlist": "assets/thumbforlist/img6.jpg",
       "release": "11.12.2021"
     },
     {
-      "name": "WOAH",
-      "singer": "KRYPTO9095",
-      "path": "/assets/audios/WOAHKRYPTO9095.mp3",
+      "name": "Panda",
+      "singer": "Desiigner",
+      "path": "/assets/audios/DesiignerPanda.mp3",
       "singerimg": "/assets/singerimg/img7.jpg",
       "thumbimg": "/assets/audiosthumb/image7.jpg",
       "index": 7,
@@ -109,6 +116,7 @@
       "listsinger": "HYUNA, Mamamoo, LISA",
       "imagecal": "/image/section/carousel1/image7.jpg",
       "subimagecal": "/image/section/singer/image7.jpg",
+      "thumbforlist": "assets/thumbforlist/img7.jpg",
       "release": "02.09.2021"
     },
     {
@@ -122,6 +130,7 @@
       "listsinger": "Phi Nhung, Anh Thơ, Trọng Tấn",
       "imagecal": "/image/section/carousel1/image8.jpg",
       "subimagecal": "/image/section/singer/image8.jpg",
+      "thumbforlist": "assets/thumbforlist/img8.jpg",
       "release": "19.08.2021"
     },
     {
@@ -136,6 +145,7 @@
       "listsinger": "An An, Hoàng Tôn, Đức Phúc",
       "imagecal": "/image/section/carousel1/image9.jpg",
       "subimagecal": "/image/section/singer/image9.jpg",
+      "thumbforlist": "assets/thumbforlist/img9.jpg",
       "release": "23.07.2021"
     }
 ]

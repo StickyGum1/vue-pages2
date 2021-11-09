@@ -131,6 +131,7 @@
       </div>
     </div>
     <listsongplayer
+      ref="listSongPlayer"
       v-on:toggleListSong="handleActiveListSong"/>
   </div>
   <audio
@@ -248,6 +249,8 @@ export default {
       }
     },
     handleActiveListSong(element) {
+      this.$refs.listSongPlayer.moveToMiddleFake();
+      this.$refs.listSongPlayer.setCurrentIndexFake();
       if(!this.$refs.playerbar.classList.contains("active-list")) {
         this.toggleListSongPlayer();
         if(this.isActiveListSong) {
@@ -339,6 +342,7 @@ export default {
 
 .player-bar-container.active-list {
   cursor: default;
+  background: transparent !important;
 }
 
 .player-bar-container.active-list .player-bar-left-part,

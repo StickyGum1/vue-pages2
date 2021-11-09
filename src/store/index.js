@@ -3,7 +3,7 @@ export default createStore({
   state: {
     user: null,
     listUser: null,
-    hasPlayer: true,
+    hasPlayer: false,
     isActiveListSong: false,
     isAvtiveNavBar: false,
     isScrollingMainpage: false,
@@ -203,7 +203,9 @@ export default createStore({
     //handle tools player
     toggleLoop(state) {
       state.isLooping = !state.isLooping;
-    }
+    },
+    //Side action
+    //
   },
   actions: {
     getSongApi(context) {
